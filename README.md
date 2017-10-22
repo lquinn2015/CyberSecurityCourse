@@ -19,7 +19,7 @@ Time spent: 20+ hours spent in total (Majority of time was figuring out workarou
 
 - Vulnerability types: XSS 
 - Tested in version: 4.1.1
-- [x] GIF Walkthrough:https://imgur.com/a/ODlKt
+- [x] GIF Walkthrough:<img src='' onerror='alert(document.cookie)' title='GIF Walkthrough' width='' alt='GIF Walkthrough' />
 - [x] Steps to recreate: Go to the comments section of the page. 
 	 -Enter in <script>while(1){alert(document.cookie);}</script> in the comments box.  
 	 -When you submit you will have an infinite amount number of cookie posts which will crash the broswer usually
@@ -38,7 +38,7 @@ Time spent: 20+ hours spent in total (Majority of time was figuring out workarou
 
 - Vulnerability types: XSS 
 - Tested in version: 4.1.1
-- [x] GIF Walkthrough:<img src='FileToBigError.gif' title='GIF Walkthrough' width='' alt='GIF Walkthrough' /> 
+- [x] GIF Walkthrough:<img src='embedBug.gif' title='GIF Walkthrough' width='' alt='GIF Walkthrough' /> 
 - [x] Steps to recreate: 
 - Choose an youtube video that you would like to embed into the post
 	- Add "[embed src=‘https://youtube.come/embed/12345\x3csvg onload=while(1){alert(document.cookie};\x3e’][/embed]" with the URL
@@ -58,7 +58,7 @@ Title: WordPress 3.3-4.7.4 - Large File Upload Error XSS
 
 - Vulnerability types: XSS 
 - Tested in version: 4.1.1
-- [x] GIF Walkthrough:<img src='https://imgur.com/a/ODlKt' title='GIF Walkthrough' width='' alt='GIF Walkthrough' /> 
+- [x] GIF Walkthrough:<img src='FileToBigError.gif' title='GIF Walkthrough' width='' alt='GIF Walkthrough' /> 
 - [x] Steps to recreate: 
 	- Choose an image that you will change the name of in your computers files.
 	- Rename the image to a<img src=a onerror=alert(document.cookie)>.jpg, then upload the image to WordPress
