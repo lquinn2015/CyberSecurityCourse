@@ -19,7 +19,7 @@ Time spent: 20+ hours spent in total (Majority of time was figuring out workarou
 
 - Vulnerability types: XSS 
 - Tested in version: 4.1.1
-- [x] GIF Walkthrough:<img src='' onerror='alert(document.cookie)' title='GIF Walkthrough' width='' alt='GIF Walkthrough' />
+- [x] GIF Walkthrough:<img src='usercommentunchecked.gif' title='GIF Walkthrough' width='' alt='GIF Walkthrough' />
 - [x] Steps to recreate: Go to the comments section of the page. 
 	 -Enter in <script>while(1){alert(document.cookie);}</script> in the comments box.  
 	 -When you submit you will have an infinite amount number of cookie posts which will crash the broswer usually
