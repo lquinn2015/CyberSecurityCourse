@@ -77,7 +77,7 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 - Vulnerability Site: Red
 - Vulberability: The SessionID is shared between sites ie not very secure logging into blue logs you into red which is very bad
 
-<img src='./Loginbad.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='./LoginBad.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
