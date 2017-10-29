@@ -1,69 +1,85 @@
+# Cybersecurity_Week8_Assignment
 
-# CyberSecurity_Week7_Assignment
+# Project 8 - Pentesting Live Targets
 
-# Project 7 - WordPress Pentesting
+Time spent: 2 hours spent in total
 
-Time spent: 20+ hours spent in total (Majority of time was figuring out workarounds due to bad installing. Note Posting was not an option for me so SQL CSRF and any Posting exploit was very very difficult)
+> Objective: The challenge is to attempt to find and exploit the vulnerabilities. The goal is to identify which two vulnerabilities 
+of each site: red, green, and blue.
 
-> Objective: Find, analyze, recreate, and document **Three vulnerabilities** affecting an old version of WordPress
+The following **required** functionality is completed:
 
-## Pentesting Report
-
-1\. [x]  (Required) Title: WordPress <= 4.1.1 - Unauthenticated Stored Cross-Site Scripting (XSS)
-- [x] Summary: 
-	Title: WordPress <= 4.1.1 - Unauthenticated Stored Cross-Site Scripting (XSS)
-    Reference: https://wpvulndb.com/vulnerabilities/7929
-    Reference: https://wordpress.org/news/2015/04/wordpress-4-1-2/
-    Reference: https://cedricvb.be/post/wordpress-stored-xss-vulnerability-4-1-2/
-    Reference: https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-3438
-
-- Vulnerability types: XSS 
-- Tested in version: 4.1.1
-- [x] GIF Walkthrough:<img src='usercommentunchecked.gif' title='GIF Walkthrough' width='' alt='GIF Walkthrough' />
-- [x] Steps to recreate: Go to the comments section of the page. 
-	 -Enter in <script>while(1){alert(document.cookie);}</script> in the comments box.  
-	 -When you submit you will have an infinite amount number of cookie posts which will crash the broswer usually
-	 -of alert messages.  After you are done with this vulnerability, reinstall the scotch box its easier that way
-	- Extra - note although I show the admin doing this other users ie contributors, author type users can as well. 
+1. [X]  Required: Challenge 0 - Username Enumeration
+1. [X]  Required: Challenge 1 - Insecure Direct Object Reference (IDOR)
+1. [X]  Required: Challenge 2 - SQL Injection (SQLi)
+1. [X]  Required: Challenge 3 - Cross-Site Scripting (XSS)
+1. [X]  Required: Challenge 4 - Cross-Site Request Forgery (CSRF)
+1. [X]  Required: Challenge 5 - Session Hijacking/Fixation
 
 
-2\. [x]  (Required) WordPress  4.0-4.7.2 - Authenticated Stored Cross-Site Scripting (XSS) in YouTube URL Embeds
-- [x] Summary: 
-	Title: WordPress  4.0-4.7.2 - Authenticated Stored Cross-Site Scripting (XSS) in YouTube URL Embeds
-    Reference: https://wpvulndb.com/vulnerabilities/8768
-    Reference: https://wordpress.org/news/2017/03/wordpress-4-7-3-security-and-maintenance-release/
-    Reference: https://github.com/WordPress/WordPress/commit/419c8d97ce8df7d5004ee0b566bc5e095f0a6ca8
-    Reference: https://blog.sucuri.net/2017/03/stored-xss-in-wordpress-core.html
-    Reference: https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-6817
+## Challenge 0: Username Enumeration
+- Vulnerability Site: Green
+- Vulberability: When you try to log onto an unexistent account you get plaintext but if the account you choose is known the text is bold. This can be exploit more by brute force.
 
-- Vulnerability types: XSS 
-- Tested in version: 4.1.1
-- [x] GIF Walkthrough:<img src='embedBug.gif' title='GIF Walkthrough' width='' alt='GIF Walkthrough' /> 
-- [x] Steps to recreate: 
-- Choose an youtube video that you would like to embed into the post
-	- Add "[embed src=‘https://youtube.come/embed/12345\x3csvg onload=while(1){alert(document.cookie};\x3e’][/embed]" with the URL
-	- Post the post
-	- You will recieve an error message and be redirected to the images source.
+Here's a walkthrough of implemented vulnerability:
+
+<img src='./UserEnumeration.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 
-3\. [x]  (Required) WordPress 3.3-4.7.4  - Large File Upload Error XSS
-- [x] Summary: 
-Title: WordPress 3.3-4.7.4 - Large File Upload Error XSS
-    Reference: https://wpvulndb.com/vulnerabilities/8819
-    Reference: https://wordpress.org/news/2017/05/wordpress-4-7-5/
-    Reference: https://github.com/WordPress/WordPress/commit/8c7ea71edbbffca5d9766b7bea7c7f3722ffafa6
-    Reference: https://hackerone.com/reports/203515
-    Reference: https://hackerone.com/reports/203515
-    Reference: https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-9061
+## Challenge 1: Insecure Direct Object Reference (IDOR)
+- Vulnerability Site: Red
+- Vulberability: You have a screen of salepeorsons and their territories on each site. This great but they store params in the url for the red site this can be exploited. By picking ID 10, 11 which arent protected.
+You are able to see Testy McTesterson and Lazy Lazyman who are not visible on the Green and Blue sites.  The programmer did not disable those users on the red site leaving the IDOR vulnerability.
 
-- Vulnerability types: XSS 
-- Tested in version: 4.1.1
-- [x] GIF Walkthrough:<img src='FileToBigError.gif' title='GIF Walkthrough' width='' alt='GIF Walkthrough' /> 
-- [x] Steps to recreate: 
-	- Choose an image that you will change the name of in your computers files.
-	- Rename the image to a<img src=a onerror=alert(document.cookie)>.jpg, then upload the image to WordPress
-	- Click on the image and then click view attachment page.
-	- You will recieve an error message if the file is over 2 MBs
+Here's a walkthrough of implemented vulnerability:
 
-	-Extra: While this is not a major problem alone it would be easy for an admin that just recieve a large amount of files to upload to do
-	- To increase danger look at social engineering.
+<img src='./IDOR.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+GIF created with [LiceCap](http://www.cockos.com/licecap/).
+
+
+## Challenge 2: SQL Injection (SQLi)
+- Vulnerability Site: Blue
+- Vulberability: The programmer of the blue site fails to santize his data properly letting you do an sql injection into the url of the site. Try something like a sleep request and you have verifcation.
+
+Here's a walkthrough of implemented vulnerability:
+
+<img src='./SQLINJECTion.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+GIF created with [LiceCap](http://www.cockos.com/licecap/).
+
+
+## Challenge 3: Cross-Site Scripting (XSS)
+- Vulnerability Site: Green
+- Vulberability: Script tages are not changed on green comments so a simple message like this is a major exploit The alert message: <script>alert(’found the xss exploit');</script>
+
+Here's a walkthrough of implemented vulnerability:
+
+<img src='./XSS.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+GIF created with [LiceCap](http://www.cockos.com/licecap/).
+
+
+## Challenge 4: Cross-Site Request Forgery (CSRF)
+- Vulnerability Site: Red
+- Vulberability: If you create a malicious page that uses a user's session to
+ forge a post request to the database. It will carry through a edit command. This is bad with the super long session ids.
+
+Here's a walkthrough of implemented vulnerability:
+
+<img src='./CSFR.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+GIF created with [LiceCap](http://www.cockos.com/licecap/).
+
+## Challenge 5: Session Hijacking/Fixation
+- Vulnerability Site: Red
+- Vulberability: The SessionID is shared between sites ie not very secure logging into blue logs you into red which is very bad
+
+<img src='./Loginbad.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+GIF created with [LiceCap](http://www.cockos.com/licecap/).
+
+## Notes
+Interesting labe 
