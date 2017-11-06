@@ -17,6 +17,9 @@ Here's a walkthrough of implemented user stories:
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
+## Attack Reports
+-All of the attacks i have records on were telnet attacks to my amun server which seems simplistic but i suppose this is the most common way to check if your attackable.
+
 ## Notes
 This lab was fun.
 
