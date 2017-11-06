@@ -5,7 +5,7 @@ Time spent: 6 hours spent in total
 > Objective: Setup a honeypot and provide an exfil data.
 
 ### Required: writeup 
-- For this assignment I setup Honey pot via gcloud. On the admin console I setup 3 honeypots dianos, Snort and ....One major issue is that running mongeDB on my admin client crashed and corrupted my system so i had to reset my honeypot the day before the project was due. Other than that I only resceived on port.
+- For this assignment I setup Honey pot via gcloud. On the admin console I setup 3 honeypots dianos, Snort and amun(This one is the best). One major issue is that running mongeDB on my admin client crashed and corrupted my system so i had to reset my honeypot the day before the project was due. Other than that i ended up being scaned 8 times in 1 min which was interesting. 
 - One Issue i have been unable to resolve is exfilling data from the admin VM. Currently running mongeDB crashes my admin console and renders thte VM useless.  
 - Reinstalling seemed to fix that issue
 ## Video Walkthrough
